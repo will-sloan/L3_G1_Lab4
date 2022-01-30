@@ -79,3 +79,4 @@ db.add_authorized_users('my_group_mate_email@cmail.carleton.ca' )
 7. Edit the function ```set_pressure_data(pressure)``` to upload the pressure data to the database in the [backend.py](backend.py) script..
 8. Modify the README.md file to describe what this projects does, including nice images.
 9. Take nice screenshots from the project and add to the [images](images) folder.
+10. Update the ```header``` value from the [frontend.py](frontend.py) script to be your session and group instead of ```SYSC3010 - Lab4```.

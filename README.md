@@ -57,9 +57,10 @@ db.add_authorized_users('my_group_mate_email@cmail.carleton.ca' )
 ### Issues
 1. Create the schematic circuit using Fritzing and upload it to the [hardware](hardware) folder.
 2. Upload the updated [schematic image of the external button](images/external_button.png).
-3. Edit the function ```upload_pressure()``` to upload pressure data once the button is pressed in the (device.py)[device.py] file.
-4. Edit the function ```update_graph()``` to update the figure every 5 seconds in the (frontend.py)[frontend.py] script.
-5. Edit the function ```get_pressure_data()``` to retrieve the pressure points from the database  in the (backend.py)[backend.py] script.
-6. Edit the function ```set_pressure_data()``` to upload the pressure data to the database.
-7. Modify the README.md file to describe what this projects does, including nice images.
-8. Take nice screenshots from the project and add to the [images](images) folder.
+3. Create a function to check when a button is pressed, and when pressed call the function ```upload_pressure()``` in the (device.py)[device.py] file.
+4. Edit the function ```update_graph()``` to update the figure every 5 seconds in the [frontend.py](frontend.py) script.
+5. Edit the function ```get_pressure_data(deviceid)``` to retrieve the pressure points from the database in the [backend.py](backend.py) script.
+   - should return a pandas dataframe with datetime as index and pressure as column
+7. Edit the function ```set_pressure_data(pressure)``` to upload the pressure data to the database in the [backend.py](backend.py) script..
+8. Modify the README.md file to describe what this projects does, including nice images.
+9. Take nice screenshots from the project and add to the [images](images) folder.

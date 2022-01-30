@@ -1,6 +1,21 @@
 # SYSC3010 Lab4
 This repository was created for Lab4 of SYSC3010 course from Carleton University. The main goal is to use git as a Team, where each student changes files in their own branches and then merge their files in the main branch when new features are implemented.
 
+# What does it do?
+It allows ```users``` to remotely set the LED colors from the sense hat attached to a ```device``` (RPi).
+
+The [backend.py](backend.py) script has the ```Lab4db()``` class, which contains all the operations related to the database. For example setting up users, devices, and configurations, as well as setting up the LEDs colors. It uses the configuration file (```mydbconfig.py```) to set and get values from the firebase database.
+
+The [frontend.py](frontend.py) script can be run on your own computer and is responsible to provide a GUI implemented using [dash](https://dash.plotly.com/). It also needs the database and user configuration file (```mydbconfig.py```). When you execute the [frontend.py](frontend.py) file, a [flask](https://flask.palletsprojects.com/en/2.0.x/) server runs in the background. So the GUI can be accessed from your local network through the address ```<device_ip>:8050```, where ```device_ip``` is the ip of the device where the [frontend.py](frontend.py) is being executed. This is how it will look like if accessed from your smartphone:
+
+<p align="center" width="100%">
+   <img src="https://github.com/roger-selzler/SYSC3010Lab4/blob/main/images/lab4_frontend_sample.png" width="40%" margin-left="auto" margin-right="auto">
+</p>
+
+The [device.py](device.py) script is executed on your Raspberry pi. It also needs the database and user configuration file (```mydbconfig.py```). At the start, it gets all LED values from the database and update the sense hat pixels. It uses [firebase streams](https://github.com/nhorvath/Pyrebase4#streaming) to get any update from the database. In other words, whenever a user changes the LED color using the GUI then a message is received and the pixel is updated accordingly.
+
+Note that the GUI can be run from anywhere and users can control authorized devices from their respective GUIs. The idea is that any one of your team mates can change the sense hat pixels of your RPi.
+
 # Install
 To install the packages required in this lab, execute the [install.sh](install.sh) file on a terminal from the RPi using
 ```

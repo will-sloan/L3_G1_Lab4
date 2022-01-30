@@ -37,9 +37,11 @@ and edit its contents. The file should contain:
 > These variables are used by many files and should be set for things to work properly.
 
 # Hardware
-One of the objectives of this lab is also adding new hardware to the RPi and sense hat. There is a mistake in the circuit provided that needs fixing. Only the png image of the circuit is provided. Students are required to provide the circuit file and update the figure with the correct connections.
+One of the objectives of this lab is also adding new hardware to the RPi and sense hat. There is an error in the circuit provided that needs fixing. Only the png image of the circuit is provided. Students are required to provide the circuit file and update the figure with the correct connections.
 
 ![ External button to upload pressure values from sense hat ](images/external_button.png)
+
+> Tip: What happens if you read a switch state from an I2C bus?
 
 # Deliverables
 

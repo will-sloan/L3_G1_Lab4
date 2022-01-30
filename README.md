@@ -17,7 +17,7 @@ The [device.py](device.py) script is executed on your Raspberry pi. It also need
 Note that the GUI can be run from anywhere and users can control authorized devices from their respective GUIs. The idea is that any one of your team mates can change the sense hat pixels of your RPi.
 
 # Install
-To install the packages required in this lab, execute the [install.sh](install.sh) file on a terminal from the RPi using
+There are packages required for this code to work. You can install them manually (look at the [install.sh](install.sh) script) or just execute it on a terminal from your RPi:
 ```
 ./install.sh
 ```

@@ -48,7 +48,7 @@ db.add_authorized_users('my_group_mate_email@cmail.carleton.ca' )
 ```
 
 ### GitHub and git tasks
-1. Open at least 2 issues
+1. Open at least 2 issues and assign a label to it
 2. self-assign 2 issues
 3. Create a new branch to work on the assigned issues
 4. Commit your changes to your current branch

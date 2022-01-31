@@ -121,7 +121,7 @@ for ledn in range(64):
                 style['background-color'] = f"rgb({colorvalue['rgb']['r']},{colorvalue['rgb']['g']},{colorvalue['rgb']['b']})"
                 try:
                     newcolor=[colorvalue['rgb']['r'],colorvalue['rgb']['g'],colorvalue['rgb']['b']]
-                    logger.debug(f'Setting let status: ({deviceid}:{ledid} = {newcolor}')
+                    logger.debug(f'Setting led status: ({deviceid}:{ledid}) = {newcolor}')
                     mydb.set_led_status(
                         deviceid,
                         ledid,

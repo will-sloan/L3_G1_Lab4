@@ -52,7 +52,7 @@ One of the objectives of this lab is also adding new hardware to the RPi and sen
 ## Each student
 
 ### Setup
-Once the database is setup and the mydbconfig.py is set, each student should run the (device.py)[device.py] so that their device is registered on the database.
+Once the database is setup and the mydbconfig.py is set, each student should run the [device.py](device.py) so that their device is registered on the database.
 
 The device (RPi) will be registed under the user configuration. But, each student should give authorization to their groupmates to control his device. You can do that by running these commands in python from your RPi:
 ```

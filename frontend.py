@@ -111,11 +111,12 @@ for ledn in range(64):
                   State(f"{str(ledn+1)}",'id'),
                   prevent_initial_call=True,
                   )
-    def changebtn(nclicks,colorvalue,deviceid,style,ninterval,ledid):
+    def changebtn(nclicks, colorvalue, deviceid, style, ninterval, ledid):
         ctx = callback_context
         triggeredprop = [p['prop_id'] for p in ctx.triggered]
         if triggeredprop[0] != ".":
             triggeredprop=triggeredprop[0].split('.')
+            # If the event was created from a click on a button, update the button style and the color in the database.
             if triggeredprop[1] == 'n_clicks':
                 style['background-color'] = f"rgb({colorvalue['rgb']['r']},{colorvalue['rgb']['g']},{colorvalue['rgb']['b']})"
                 try:
@@ -127,14 +128,15 @@ for ledn in range(64):
                         newcolor,
                         )                    
                 except Exception as e:
-                    logger.debug(f"Error occured while setting LED color...{newcolor} {e}")
+                    logger.debug(f"Error occurred while setting LED color...{newcolor} {e}")
                     logger.debug(traceback.format_exc())
+            # if the event was triggered by the timer fetch all led colors from database.
             elif triggeredprop[1] == 'n_intervals':
                 try:
                     dbcolor = mydb.get_led_color(deviceid, ledid)
                     style['background-color'] = f"rgb({dbcolor[0]},{dbcolor[1]},{dbcolor[2]})"
                 except Exception as e:
-                    logger.debug(f"Error occured while setting LED color.. {e}")
+                    logger.debug(f"Error occurred while setting LED color.. {e}")
                     logger.error(traceback.format_exc())
         return style
     
@@ -147,7 +149,7 @@ body = [
     color_picker,
     ]
         
-app.layout = html.Div(children = body)
+app.layout = html.Div(children=body)
 
 if __name__ == "__main__":
     app.run_server(debug=True,host='0.0.0.0')

@@ -13,9 +13,10 @@ coloredlogs.install(level='DEBUG', logger=logger)
 
 
 class Lab4db():
-    def __init__(self,config, email=None, firstname=None, lastname=None):
+    def __init__(self,config, email=None, firstname=None, lastname=None, fakeid: int = None):
         self._firebase =pyrebase.initialize_app(config)
         self._db = self._firebase.database()
+        self._fakeid = '' if fakeid is None else str(fakeid)
         self.__load_user(email,firstname,lastname)
         self.__register_device()
     
@@ -81,7 +82,8 @@ class Lab4db():
                 self._device_info = {}
                 return
             if len(data) == 4:
-                rpiserial=data['serial']+'1'
+                data['serial']+=self._fakeid
+                rpiserial=data['serial']
                 data['owner'] = self._user['id']
                 data['authorized_users'] = [self._user['id'] ]
                 try:
@@ -220,18 +222,23 @@ class Lab4db():
         except Exception as e:
             logger.error("Error getting time on firebase")
             return ""
-    
-    def get_pressure_data(self,device_id):
+
+    def get_device_id(self):
+        if self.is_device():
+            return self._device_info['serial']
+        else:
+            return None
+
+    def get_pressure_data(self, device_id):
         try:
             self._db.child('devices').child(device_id).child('pressure').get()
         except Exception as e:
-            logger.error(f"An error occured when trying to get pressure data from database. {e}")
+            logger.error(f"An error occurred when trying to get pressure data from database. {e}")
         return
     
-    def set_pressure_data(self,pressure):
+    def set_pressure_data(self, pressure):
         try:
             datatimestr = datetime.now().strftime("%Y%m%d%H%M%S")
             self._db.child('devices').child(self._device_info['serial']).child('pressure').child().set()
         except Exception as e:
-            logger.error(f"Error occured while trying to set pressure. {e}")
-    
+            logger.error(f"Error occurred while trying to set pressure. {e}")

@@ -221,3 +221,17 @@ class Lab4db():
             logger.error("Error getting time on firebase")
             return ""
     
+    def get_pressure_data(self,device_id):
+        try:
+            self._db.child('devices').child(device_id).child('pressure').get()
+        except Exception as e:
+            logger.error(f"An error occured when trying to get pressure data from database. {e}")
+        return
+    
+    def set_pressure_data(self,pressure):
+        try:
+            datatimestr = datetime.now().strftime("%Y%m%d%H%M%S")
+            self._db.child('devices').child(self._device_info['serial']).child('pressure').child().set()
+        except Exception as e:
+            logger.error(f"Error occured while trying to set pressure. {e}")
+    

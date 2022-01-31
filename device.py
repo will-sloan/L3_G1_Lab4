@@ -1,15 +1,19 @@
 from sense_hat import SenseHat
 from backend import Lab4db, logger
 from mydbconfig import *
+import threading
 
 sense = SenseHat()
 
+def upload_pressure(db, pressure):
+    db.set_pressure_data(pressure)
+    
 def init_screen(db):
     if db.is_device():
         colors=db.get_led_status(db._device_info['serial'])
         sense.set_pixels(colors)
     else:
-        raise Exception("This is not a Raspbarry pi. This file should be run from a RPi.")
+        raise Exception("This is not a Raspberry pi. This file should be run from a RPi.")
     
 def led_stream_handler(message):
     if message['event'] =='put':

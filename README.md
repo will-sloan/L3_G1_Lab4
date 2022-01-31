@@ -36,6 +36,12 @@ and edit its contents. The file should contain:
 
 > These variables are used by many files and should be set for things to work properly.
 
+The ```mydbconfig.py``` file should not be included in the repository since it has sensitive information about user and database. In addition, each student will have in common the config variable (database configuration), but the user information should be different for each student. To avoid pushing the file to your remote repository, just include the file in the ```.gitignore``` file. If you dont have the file, you should create the file and add one line for each ignored file. You can even ignore other directories and patterns in files. For example, the ```__pycache__``` should not be included in your repository. Your ```.gitignore``` file will look like this:
+```
+mydbconfig.py
+*__pycache__*
+```
+
 # Hardware
 One of the objectives of this lab is also adding new hardware to the RPi and sense hat. There is an error in the circuit provided that needs fixing. Only the png image of the circuit is provided. Students are required to provide the circuit file and update the figure with the correct connections.
 

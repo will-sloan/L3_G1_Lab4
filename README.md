@@ -114,7 +114,7 @@ Execute the [frontend.py](frontend.py) script to control your authorized devices
 
 You can execute this file on your RPi, then verify the RPi IP address, and access it from your computer's web browser using the URL ```<RPI_IP_address>:8050```.
 
-<details><summary>For advanced users</summary>
+<details><summary>For advanced users 😎 </summary>
 <p>
 You can execute the <a href="https://github.com/roger-selzler/SYSC3010Lab4/blob/main/frontend.py">frontend.py</a> script from your own computer. To access it from your local network you just need the IP address of your computer instead of the RPi. In addition, you need to install the required packages. The required packages can be found <a href="https://github.com/roger-selzler/SYSC3010Lab4/blob/main/install.sh">here</a>.
 </p>

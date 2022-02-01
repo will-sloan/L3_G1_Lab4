@@ -8,7 +8,7 @@ from uuid import uuid4
 from datetime import datetime
 import coloredlogs, logging
 import traceback
-logger = logging.getLogger("sysc3010")
+logger = logging.getLogger("__sysc3010__")
 coloredlogs.install(level='DEBUG', logger=logger)
 
 
@@ -179,7 +179,7 @@ class Backend():
             return None
 
     def get_device_owner(self, device_id):
-        logger.debug(f"Retrieving device owner.")
+        logger.debug(f"Retrieving device owner for device {device_id}.")
         device_owner = ""
         try:
             owner_id = self._db.child('devices').child(device_id).child('device_info').child('owner').get().val()

@@ -1,15 +1,12 @@
 from sense_hat import SenseHat
 from backend import Backend, logger
 from mydbconfig import *
-import threading
 
 sense = SenseHat()
 
-
-
-def init_screen(db):
-    if db.is_device():
-        colors=db.get_led_status(db._device_info['serial'])
+def init_screen(backend):
+    if backend.is_device():
+        colors=backend.get_led_status(backend._device_info['serial'])
         sense.set_pixels(colors)
     else:
         raise Exception("This is not a Raspberry pi. This file should be run from a RPi.")
@@ -38,7 +35,7 @@ def main():
     #register a stream: whenever there is a change, execute the function led_stream_handler()
     led_stream = backend._db \
         .child('devices') \
-        .child(db._device_info['serial']) \
+        .child(backend._device_info['serial']) \
         .child('leds') \
         .stream(led_stream_handler)
 

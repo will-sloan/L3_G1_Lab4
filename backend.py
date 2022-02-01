@@ -165,7 +165,7 @@ class Backend():
                 logger.debug('Clearing all LED colors in the database.')
                 for ledn in range(64):
                     try:
-                        self._db.child('devices').child(device_id).child('leds').child(ledn).set([0,0,0])
+                        self._db.child('devices').child(device_id).child('leds').child(ledn+1).set([0,0,0])
                     except Exception as e:
                         logger.error(f"An error occurred while setting rgb color for led {ledn}. {e}")
                 self.__led_last_update(device_id)

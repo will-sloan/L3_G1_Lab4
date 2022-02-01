@@ -59,9 +59,10 @@ Once you know the **IP address** of the device where you are running the [fronte
 Note that the GUI can be run from any computer and can change the LED colors of any device for which the user is authorized. The idea of this project is that any one of your teammates can change the SenseHAT pixels of your RPi.
 
 # Install
-There are packages required for this code to work. You can install them manually (look at the [install.sh](install.sh) script) or just execute it on a terminal from your RPi:
+There are packages required for this mini-project. You can manually install them  using the command below, **or** using bash (from your RPi) using the [install.sh](install.sh) script by running the command ```./install.sh```.
+
 ```
-./install.sh
+pip3 install pyrebase4 dash dash_daq dash-extensions coloredlogs
 ```
 
 # Config
@@ -89,6 +90,7 @@ mydbconfig.py
 ## Student #1
 1. Fork the repository, **make it private, add your TA, the prof and your classmates**
 2. Add collaborators (your group mates)
+3. Configure your repository to enable issues: go to your forked repository :point_right: Settings :point_right: General :point_right: Features :point_right: then enable ```Issues```.
 
 ## Student #2
 1. Create the Firebase real-time database. 
@@ -133,7 +135,7 @@ The device (RPi) will be registered under the user configuration. But, each stud
 
 ### Issues
 1. Capability to erase all LEDs.
-   - Add a function in the [device.py](device.py) script to continuously check the joystick and set all the values of the LEDs to ```[0,0,0]``` if/when the joystick is pressed down.
+   - Add a function in the [device.py](device.py) script to continuously check the joystick and set all the values of the LEDs to ```[0,0,0]``` if/when the joystick is sensepressed down.
      - Inside this newly created function you should call (```clear_led()```) from the Lab4db to clear all LEDs. **NOT** calling the ```sense.set_pixels(...)```  function (otherwise the database will not be updated).
 2. Add image samples
    - Take nice screenshots from your group mates LED screen and add to the [images](images) folder.

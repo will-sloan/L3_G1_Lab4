@@ -14,15 +14,14 @@ It allows ```users``` to remotely set the LED colors from the SenseHAT attached 
 </p>
 
 ### DB Schema
-
 <p align="center" width="100%">
    <img src="https://github.com/roger-selzler/SYSC3010Lab4/blob/main/images/db_schema_sample.png" width="60%" margin-left="auto" margin-right="auto">
 </p>
 
 ### Sequence diagram
-
-**TODO**
-
+<p align="center" width="100%">
+   <img src="https://github.com/roger-selzler/SYSC3010Lab4/blob/main/images/sequence_diagram.png" width="100%" margin-left="auto" margin-right="auto">
+</p>
 
 ## The scripts
 ### The [backend.py](backend.py)

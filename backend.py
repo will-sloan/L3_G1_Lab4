@@ -14,7 +14,7 @@ coloredlogs.install(level='DEBUG', logger=logger)
 
 class Backend():
     def __init__(self,config, email=None, firstname=None, lastname=None, fakeid: int = None):
-        self._firebase =pyrebase.initialize_app(config)
+        self._firebase = pyrebase.initialize_app(config)
         self._db = self._firebase.database()
         self._fakeid = '' if fakeid is None else str(fakeid)
         self.__load_user(email, firstname, lastname)

@@ -5,10 +5,22 @@ This repository was created for Lab4 of SYSC3010 course from Carleton University
 It allows ```users``` to remotely set the LED colors from the sense hat attached to a ```device``` (RPi).
 
 
-## Deployment diagram
+## Technical information
+### Deployment diagram
 <p align="center" width="100%">
    <img src="https://github.com/roger-selzler/SYSC3010Lab4/blob/main/images/deployment_diagram.png" width="80%" margin-left="auto" margin-right="auto">
 </p>
+
+### DB Schema
+
+<p align="center" width="100%">
+   <img src="https://github.com/roger-selzler/SYSC3010Lab4/blob/main/images/db_schema_sample.png" width="60%" margin-left="auto" margin-right="auto">
+</p>
+
+### Sequence diagram
+
+**TODO**
+
 
 ## The scripts
 ### The [backend.py](backend.py)

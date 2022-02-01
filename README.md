@@ -98,19 +98,30 @@ mydbconfig.py
 
 ### Setup
 #### Step 1
-Create your ```mydbconfig.py``` file. It should have the configuration about your firebase database and the user information.
+Create your ```mydbconfig.py``` file. It should have the configuration about your firebase database and your user information. This file should not be included in the GitHub repository. More information in [Config](https://github.com/roger-selzler/SYSC3010Lab4#config) section.
 
 #### Step 2
 
-Execute the the [device.py](device.py) script on your RPi. The owner of the firebase database should be able to visualize the new entries in his database.
+Execute the the [device.py](device.py) script on your RPi. The owner of the firebase database should be able to visualize the new entries in his database. More information about how the [device.py](device.py) script works can be found [here](device.py).
 
 #### Step 3
-Create a file to give authorization to your group mates to control your raspberry pi. Each student should have their own file and it should not be included in your repository.
+Create a file to give authorization to your group mates to control your Raspberry pi. Each student should have his own file, and it should not be included in your repository. You can execute it as many times as you want, but you only need to do it once. More information about authorizing other users to control your device can be found [here](https://github.com/roger-selzler/SYSC3010Lab4#authorizing-users-to-control-your-sense-hat-led-display).
 
+#### Step 4
+Execute the [frontend.py](frontend.py) script to control your authorized devices. Since you executed the [device.py](device.py) script on your RPi, you have at least one device to control. Once your group mates give authorization for you to control their devices, you will see more device options to control. 
 
-Once the database is setup and the mydbconfig.py is set, each student should run the [device.py](device.py) so that their device is registered on the database.
+You can execute this file on your RPi, then verify the RPi IP address, and access it from your computer's web browser using the URL ```<RPI_IP_address>:8050```.
 
-The device (RPi) will be registed under the user configuration. But, each student should give authorization to their groupmates to control their own SenseHAT display/device (see instructions above)
+<details><summary>For advanced users</summary>
+<p>
+You can execute the <a href="https://github.com/roger-selzler/SYSC3010Lab4/blob/main/frontend.py">frontend.py</a> script from your own computer. To access it from your local network you just need the IP address of your computer instead of the RPi. In addition, you need to install the required packages. The required packages can be found <a href="https://github.com/roger-selzler/SYSC3010Lab4/blob/main/install.sh">here</a>.
+</p>
+</details>
+
+<!--
+Once the database is setup and the mydbconfig.py is set, each student should run the [device.py](device.py) so that their device is registered on the database. 
+
+The device (RPi) will be registered under the user configuration. But, each student should give authorization to their group mates to control their own SenseHAT display/device (see instructions above) -->
 
 ### GitHub and git tasks
 1. Open at least 3 issues and assign a label to each

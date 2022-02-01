@@ -26,25 +26,13 @@ It allows ```users``` to remotely set the LED colors from the SenseHAT attached 
 
 ## The scripts
 ### The [backend.py](backend.py)
-The [backend.py](backend.py) script has the ```Lab4db()``` class, which contains all the operations related to the database. For example: setting up users, devices, and configurations, as well as setting up the LED colors. It uses the configuration file (```mydbconfig.py```) to set and get values from the firebase database.
+The [backend.py](backend.py) script has the ```Lab4db()``` class, which contains all the operations related to the database. For example: setting up users, devices, and configurations, as well as setting up the LED colors. It uses the configuration file (```mydbconfig.py```) to set and get values from the Firebase database.
 
 ### The [device.py](device.py)
 The [device.py](device.py) script should be executed on your RPi. It also interacts with the database using functions defined in [backend.py](backend.py) and user configuration information from ```mydbconfig.py```. When you execute the script for the first time, the device and user will be added to the database, and the LED display will be initialized with initial RGB colors.
 
 The next time you execute the [device.py](device.py) script, it will get the color values for the LED display from the database and set the SenseHAT LED display accordingly. While the script is running, it will *listen* for changes in the database by using [firebase streams](https://github.com/nhorvath/Pyrebase4#streaming). In other words, whenever any authorized user changes the LED color using the GUI then a message is received by [device.py](device.py) and the callback function associated with the Firebase stream updates the pixel(s) accordingly.
 
-## Authorizing users to control your sense hat LED display
-Registered users in the database can be authorized to control your sense hat LED display. In fact, you should give your group mates authorization to control your device. You can achieve this by creating a file with the code below (with their respective emails).
-```
-from backend import Lab4db
-from mydbconfig import *
-db = Lab4db(config, email, firstname, lastname)
-
-# Add each of your group mates
-db.add_authorized_users('my_group_mate1_email@cmail.carleton.ca' )
-db.add_authorized_users('my_group_mate2_email@cmail.carleton.ca' )
-
-```
 
 ## The [frontend.py](frontend.py)
 The [frontend.py](frontend.py) script provides a GUI implemented using [dash](https://dash.plotly.com/). Like the [device.py](device.py) script, [frontend.py](frontend.py) interacts with the database using functions defined in [backend.py](backend.py) and user configuration information from ```mydbconfig.py```. When you execute the [frontend.py](frontend.py) file, a [flask](https://flask.palletsprojects.com/en/2.0.x/) server runs in the background (note that dash is built on top of flask, so you will not see the flask code directly). The GUI can be accessed from your local network through the address ```<frontend_ip>:8050```, where ```frontend_ip``` is the IP address of the device where the [frontend.py](frontend.py) script is being executed. It can be run at the same RPi as the [device.py](device.py) script, or on your own computer.
@@ -85,6 +73,19 @@ mydbconfig.py
 *__pycache__*
 ```
 
+## Authorizing users to control your sense hat LED display
+Registered users in the database can be authorized to control your SenseHAT LED display. In fact, you should authorize your teammates to control your device. You can achieve this by creating and running a script with the code below (with their respective emails used instead of the placeholder email addresses).
+```
+from backend import Lab4db
+from mydbconfig import *
+db = Lab4db(config, email, firstname, lastname)
+
+# Add each of your group mates
+db.add_authorized_users('my_group_mate1_email@cmail.carleton.ca' )
+db.add_authorized_users('my_group_mate2_email@cmail.carleton.ca' )
+
+```
+
 # Deliverables
 
 ## Student #1
@@ -94,20 +95,20 @@ mydbconfig.py
 
 ## Student #2
 1. Create the Firebase real-time database. 
-2. Share the connection details with your teammates.
+2. Share the connection details with your teammates. They will need this information for their ```mydbconfig.py``` files so that their [backend.py](backend.py) script knows how to access the shared Firebase real-time DB.
 
 ## Each student
 
 ### Setup
 #### Step 1
-Create your ```mydbconfig.py``` file. It should have the configuration about your firebase database and your user information. This file should not be included in the GitHub repository. More information in [Config](https://github.com/roger-selzler/SYSC3010Lab4#config) section.
+Create your ```mydbconfig.py``` file. It should have the connection configuration information for your team's Firebase database and your own user information (name, email). This file should not be included in the GitHub repository. More information in [Config](https://github.com/roger-selzler/SYSC3010Lab4#config) section.
 
 #### Step 2
 
-Execute the the [device.py](device.py) script on your RPi. The owner of the firebase database should be able to visualize the new entries in his database. More information about how the [device.py](device.py) script works can be found [here](device.py).
+Execute the the [device.py](device.py) script on your RPi. The owner of the Firebase database should be able to visualize the new entries in his database. More information about how the [device.py](device.py) script works can be found [here](device.py).
 
 #### Step 3
-Create a file to give authorization to your group mates to control your Raspberry pi. Each student should have his own file, and it should not be included in your repository. You can execute it as many times as you want, but you only need to do it once. More information about authorizing other users to control your device can be found [here](https://github.com/roger-selzler/SYSC3010Lab4#authorizing-users-to-control-your-sense-hat-led-display).
+Create a file to give authorization to your group mates to control your Raspberry pi. Each student should have their own file, and it should not be included in your repository. You can execute it as many times as you want, but you only need to do it once. More information about authorizing other users to control your device can be found [above](https://github.com/roger-selzler/SYSC3010Lab4#authorizing-users-to-control-your-sense-hat-led-display).
 
 #### Step 4
 Execute the [frontend.py](frontend.py) script to control your authorized devices. Since you executed the [device.py](device.py) script on your RPi, you have at least one device to control. Once your group mates give authorization for you to control their devices, you will see more device options to control. 

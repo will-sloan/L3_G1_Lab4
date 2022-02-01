@@ -2,11 +2,11 @@ import dash
 from dash import dcc, html, callback_context
 import dash_daq as daq
 from dash.dependencies import Input, Output, State
-from backend import Lab4db, logger
+from backend import Backend, logger
 from mydbconfig import *
 import random
 
-mydb = Lab4db(config, email, firstname, lastname)
+backend = Backend(config, email, firstname, lastname)
 starter_color=[random.randint(0,255) for i in range(3)]
 app = dash.Dash(__name__)
 
@@ -24,14 +24,14 @@ btn_style = {
         }
 
 def get_led_style (device_id, led_id):
-    color = mydb.get_led_color(device_id, led_id)
+    color = backend.get_led_color(device_id, led_id)
     style = btn_style.copy()
     style['background-color'] = f"rgb({color[0]},{color[1]},{color[2]})"
     return style
 
 def get_my_devices():
-    mydb.get_my_devices()
-    return mydb._my_device_ids
+    backend.get_my_devices()
+    return backend._my_device_ids
 
 my_devices = get_my_devices()
 
@@ -49,7 +49,7 @@ dropdown = html.Div([
     dcc.Dropdown(
         id = 'dropdown_devices',
         options=[
-            {'label': f"{mydb.get_device_owner(id)} ({str(id)})",'value': str(id)} for id in my_devices
+            {'label': f"{backend.get_device_owner(id)} ({str(id)})",'value': str(id)} for id in my_devices
             ],
         value=my_devices[0]
         )
@@ -122,7 +122,7 @@ for ledn in range(64):
                 try:
                     newcolor=[colorvalue['rgb']['r'],colorvalue['rgb']['g'],colorvalue['rgb']['b']]
                     logger.debug(f'Setting led status: ({deviceid}:{ledid}) = {newcolor}')
-                    mydb.set_led_status(
+                    backend.set_led_status(
                         deviceid,
                         ledid,
                         newcolor,
@@ -133,7 +133,7 @@ for ledn in range(64):
             # if the event was triggered by the timer fetch all led colors from database.
             elif triggeredprop[1] == 'n_intervals':
                 try:
-                    dbcolor = mydb.get_led_color(deviceid, ledid)
+                    dbcolor = backend.get_led_color(deviceid, ledid)
                     style['background-color'] = f"rgb({dbcolor[0]},{dbcolor[1]},{dbcolor[2]})"
                 except Exception as e:
                     logger.debug(f"Error occurred while setting LED color.. {e}")

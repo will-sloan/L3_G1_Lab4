@@ -1,12 +1,11 @@
 from sense_hat import SenseHat
-from backend import Lab4db, logger
+from backend import Backend, logger
 from mydbconfig import *
 import threading
 
 sense = SenseHat()
 
-def upload_pressure(db, pressure):
-    db.set_pressure_data(pressure)
+
 
 def init_screen(db):
     if db.is_device():
@@ -31,17 +30,21 @@ def led_stream_handler(message):
 
 def main():
     #initialize the db with configuration and user data
-    db = Lab4db(config, email, firstname, lastname)
+    backend = Backend(config, email, firstname, lastname)
 
     #initialize the LED values from database
-    init_screen(db)
+    init_screen(backend)
 
     #register a stream: whenever there is a change, execute the function led_stream_handler()
-    led_stream = db._db \
+    led_stream = backend._db \
         .child('devices') \
         .child(db._device_info['serial']) \
         .child('leds') \
         .stream(led_stream_handler)
+
+    # to be implemented by students
+    def clear_leds():
+        raise NotImplementedError("clear_leds should be implemented by students.")
 
 if __name__ == '__main__':
     main()

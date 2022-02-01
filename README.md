@@ -33,6 +33,19 @@ The [device.py](device.py) script should be executed on your RPi. It also intera
 
 The next time you execute the [device.py](device.py) script, it will get the color values for the LED display from the database and set the SenseHAT LED display accordingly. While the script is running, it will *listen* for changes in the database by using [firebase streams](https://github.com/nhorvath/Pyrebase4#streaming). In other words, whenever any authorized user changes the LED color using the GUI then a message is received by [device.py](device.py) and the callback function associated with the Firebase stream updates the pixel(s) accordingly.
 
+## Authorizing users to control your sense hat LED display
+Registered users in the database can be authorized to control your sense hat LED display. In fact, you should give your group mates authorization to control your device. You can achieve this by creating a file with the code below (with their respective emails).
+```
+from backend import Lab4db
+from mydbconfig import *
+db = Lab4db(config, email, firstname, lastname)
+
+# Add each of your group mates
+db.add_authorized_users('my_group_mate1_email@cmail.carleton.ca' )
+db.add_authorized_users('my_group_mate2_email@cmail.carleton.ca' )
+
+```
+
 ## The [frontend.py](frontend.py)
 The [frontend.py](frontend.py) script provides a GUI implemented using [dash](https://dash.plotly.com/). Like the [device.py](device.py) script, [frontend.py](frontend.py) interacts with the database using functions defined in [backend.py](backend.py) and user configuration information from ```mydbconfig.py```. When you execute the [frontend.py](frontend.py) file, a [flask](https://flask.palletsprojects.com/en/2.0.x/) server runs in the background (note that dash is built on top of flask, so you will not see the flask code directly). The GUI can be accessed from your local network through the address ```<frontend_ip>:8050```, where ```frontend_ip``` is the IP address of the device where the [frontend.py](frontend.py) script is being executed. It can be run at the same RPi as the [device.py](device.py) script, or on your own computer.
 
@@ -71,21 +84,6 @@ mydbconfig.py
 *__pycache__*
 ```
 
-# Authorizing users to control your SenseHAT LED display
-Registered users in the database can be authorized to control your SenseHAT LED display. In fact, you should give your teammates authorization to control your device. You can achieve this by creating a file with the code below (with their respective emails).
-```
-from backend import Lab4db
-from mydbconfig import *
-db = Lab4db(config, email, firstname, lastname)
-
-# Add each of your group mates
-db.add_authorized_users('my_teammate1_email@cmail.carleton.ca' )
-db.add_authorized_users('my_teammate2_email@cmail.carleton.ca' )
-
-```
-If your teammates have already added their user information to the Firebase database, then they will be added as authorized users to control your SenseHAT display.
-
-
 # Deliverables
 
 ## Student #1
@@ -100,7 +98,15 @@ If your teammates have already added their user information to the Firebase data
 
 ### Setup
 #### Step 1
-Create your ```mydbconfig.py``` file.
+Create your ```mydbconfig.py``` file. It should have the configuration about your firebase database and the user information.
+
+#### Step 2
+
+Execute the the [device.py](device.py) script on your RPi. The owner of the firebase database should be able to visualize the new entries in his database.
+
+#### Step 3
+Create a file to give authorization to your group mates to control your raspberry pi. Each student should have their own file and it should not be included in your repository.
+
 
 Once the database is setup and the mydbconfig.py is set, each student should run the [device.py](device.py) so that their device is registered on the database.
 
@@ -108,7 +114,7 @@ The device (RPi) will be registed under the user configuration. But, each studen
 
 ### GitHub and git tasks
 1. Open at least 3 issues and assign a label to each
-2. Self-assign 3 issues
+2. Self-assign issues
 3. Create a new branch to work on the assigned issues
 4. Commit your changes to your current branch
 5. Once the code reflect the solutions, create a pull request to merge with the main branch and resolve the issue.

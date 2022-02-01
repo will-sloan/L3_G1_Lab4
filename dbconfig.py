@@ -1,4 +1,4 @@
-email="firstnamelastname@cmailcarleton.ca'
+email="firstnamelastname@cmail.carleton.ca'
 firstname="firstname"
 lastname="lastname"
 

@@ -87,7 +87,7 @@ mydbconfig.py
 # Deliverables
 
 ## Student #1
-1. Fork the repository, **make it private, add your TA, the prof and your classmates**
+1. Fork the repository, **make it private, add your TA, and the prof**
 2. Add collaborators (your group mates)
 3. Configure your repository to enable issues: go to your forked repository :point_right: Settings :point_right: General :point_right: Features :point_right: then enable ```Issues```.
 

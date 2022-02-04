@@ -38,7 +38,7 @@ my_devices = get_my_devices()
 if len(my_devices) <= 0:
     raise ValueError("No devices available for this user.")
 
-header = html.H1(children=f"SYSC3010 - Lab4")
+header = html.H1(children=f"SYSC3010 - L3 G1 - Lab4")
 
 subheader = html.H4(children=f"{firstname.capitalize()} {lastname.capitalize()}")
 

@@ -25,6 +25,7 @@ def led_stream_handler(message):
                 )
             logger.debug(f"Received update for led: {message}")
 
+
 def main():
     #initialize the db with configuration and user data
     backend = Backend(config, email, firstname, lastname)
@@ -40,8 +41,22 @@ def main():
         .stream(led_stream_handler)
 
     # to be implemented by students
+    '''
+    while True:
+        for event in sense.stick.get_events():
+            if event.action == "pressed":
+                clear_leds()
+    '''
     def clear_leds():
-        raise NotImplementedError("clear_leds should be implemented by students.")
+        while True:
+            for event in sense.stick.get_events():
+                if event.action == "pressed":
+                    backend.clear_leds(backend.get_device_id())
+
+    clear_leds()
+    
+
+
 
 if __name__ == '__main__':
     main()
